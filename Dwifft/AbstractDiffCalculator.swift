@@ -86,7 +86,8 @@ public class AbstractDiffCalculator<Section: Equatable, Value: Equatable> {
     }
     
     // UITableView and UICollectionView both perform assertions on the *current* number of rows/items before performing any updates. As such, the `sectionedValues` property must be backed by an internal value that does not change until *after* `beginUpdates`/`performBatchUpdates` has been called.
-    internal final var _sectionedValues: SectionedValues<Section, Value>
+    // But I did it public for only one reason - I need to be able sort original massive silently sometimes when we use drag'n'drop, for example
+    public final var _sectionedValues: SectionedValues<Section, Value>
     internal func processChanges(newState: SectionedValues<Section, Value>, diff: [SectionedDiffStep<Section, Value>]){
         fatalError("override me")
     }
